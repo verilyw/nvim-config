@@ -27,7 +27,7 @@ require("lazy").setup({
     -- add your plugins here
     -- lsp 
     { "mason-org/mason.nvim", opts = {} },
-    { 
+    {
         "neovim/nvim-lspconfig",
         config = function() require "config/lspconfig" end
     },
@@ -62,11 +62,48 @@ require("lazy").setup({
         config = function()
             require "config/nvim-cmp"
         end
+    },
+    -- trouble
+    {
+        "folke/trouble.nvim",
+        config = function()
+            require "config/trouble"
+        end
+    },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        init= function()
+            require('nvim-treesitter.install').update({ with_sync = true })
+        end,
+        config = function() require'config/nvim-treesitter' end,
+        dependencies = {
+            'p00f/nvim-ts-rainbow',
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            -- 'nvim-treesitter/nvim-treesitter-context',
+            'JoosepAlviste/nvim-ts-context-commentstring',
+            'windwp/nvim-ts-autotag',
+            'andymass/vim-matchup',
+            'mfussenegger/nvim-treehopper',
+        },
+    },
+    -- telescope
+    {
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        config = function() require "config/telescope" end,
+          dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    -- files and buffer
+    {
+        "nvim-tree/nvim-tree.lua",
+        config = function() require 'config/nvim-tree' end,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        }
     }
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   --  install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
 })

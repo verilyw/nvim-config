@@ -23,7 +23,7 @@ cmp.setup {
             -- -- For `vsnip` users.
             -- vim.fn["vsnip#anonymous"](args.body)
             -- For `luasnip` users.
-            require('luasnip').lsp_expand(args.body)
+            -- require('luasnip').lsp_expand(args.body)
             -- For `ultisnips` users.
             -- vim.fn["UltiSnips#Anon"](args.body)
             -- For `snippy` users.
@@ -49,7 +49,7 @@ cmp.setup {
         --     option = {
         --     },
         -- },
-        {name = "luasnip", max_item_count = 8},
+        -- {name = "luasnip", max_item_count = 8},
         {name = "path"},
         -- {name = "codeium"}, -- INFO: uncomment this for AI completion
         -- {name = "spell", max_item_count = 4},
@@ -88,8 +88,6 @@ cmp.setup {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif require("luasnip").expand_or_jumpable() then
-                require("luasnip").expand_or_jump()
             elseif has_words_before() then
                 cmp.complete()
             else
@@ -99,8 +97,6 @@ cmp.setup {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif require("luasnip").jumpable(-1) then
-                require("luasnip").jump(-1)
             else
                 fallback()
             end
